@@ -144,11 +144,27 @@
   "image": "img-parlante-sony.jpg"
  },
  {
-  "id": 1666828234534,
-  "name": "asdasd",
-  "price": "123",
-  "discount": "32",
+  "id": 17,
+  "price": 0,
+  "discount": 0,
+  "category": "",
+  "description": "",
+  "name": ""
+ },
+ {
+  "id": 227180,
+  "price": 0,
+  "discount": 0,
+  "category": "",
+  "description": "",
+  "name": ""
+ },
+ {
+  "id": 549099,
+  "price": 123123,
+  "discount": 22,
   "category": "in-sale",
-  "description": "ssss"
+  "description": "ddd",
+  "name": "aaaa"
  }
 ]

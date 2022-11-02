@@ -1,3 +1,4 @@
+const { randomBytes } = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -9,12 +10,13 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
-		res.render('products', {products : products});
+		res.render('products', {products});
 	},
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		// Do the magic
+		let product = products.find(product => product.id == req.params.id);
+		res.render('detail', {product});
 	},
 
 	// Create - Form to create
@@ -24,21 +26,21 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		
-		let newProduct = {
-			id: Date.now(),
-			name : req.body.name,
-			price : Number(req.body.price),
-			discount : Number(req.body.discount),
-			category : req.body.category,
-			description : req.body.description,
-			image : req.body.image
-		}
 
-		products.push(newProduct);
+		//Obtengo la imagen del producto
+		//console.log(req.file);
+
+		products.push({
+			id: Number(Math.random()*1000000).toFixed(0),
+			price: Number(req.body.price),
+			discount: Number(req.body.discount),
+			category: req.body.category,
+			description: req.body.description,
+			image: req.file.filename,
+			name: req.body.name
+		});
 
 		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-
 		res.redirect('/products');
 	},
 
